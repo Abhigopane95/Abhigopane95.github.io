@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .calc-wrapper{
+            height: 200px;
+            width: 400px;
+            padding: 15px;
+            border: 3px solid black;
+        }
+
+        .calc-wrapper .result{
+            margin-top: 10px;
+            width: 200px;
+            height: 20px;
+            border: 1px solid black;
+            padding: 5px;
+            background-color: green;
+            color: white;
+            display: flex;
+            column-gap: 5px;
+
+        }
+
+        .calc-wrapper span{
+            display: inline-block;
+        }
+
+        .calc-wrapper .inputclass{
+            height: 30px;
+            display: flex;
+            column-gap: 10px;
+            margin-top: 10px;
+        }
+
+        .calc-wrapper .action{
+            display: flex; 
+            column-gap: 10px;
+            margin-top: 10px;
+        }
+
+        .calc-wrapper .action button{
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            color: white;
+            font-size: 25px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .calc-wrapper .action button:hover{
+            border: 3px solid red;
+        }
+
+        .calc-wrapper .reset button{
+            margin-top: 10px;
+            width: 60px;
+            height: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="calc-wrapper">
+        <h2> Calculator App </h2>
+        <div class="result">
+            <span> Results = </span> 
+            <span> 0 </span>
+        </div> 
+        
+
+        <div class="inputclass">
+            <input type="number" placeholder="Number 1"/>
+            <input type="number" placeholder="Number 2"/>
+        </div>
+
+        <div class="action">
+            <button>+</button>
+            <button>-</button>
+            <button>*</button>
+            <button>/</button>
+        </div>
+
+        <div class="reset">
+            <button>Reset</button>
+        </div>
+    </div>
+
+    <script>
+        const input1Ref = document.querySelector('.inputclass input:nth-child(1)');
+        const input2Ref = document.querySelector('.inputclass input:nth-child(2)');
+        const resultRef = document.querySelector('.result span:nth-child(2)');
+        const addRef = document.querySelector('.action button:nth-child(1)');
+        const minusRef = document.querySelector('.action button:nth-child(2)');
+        const multiplyRef = document.querySelector('.action button:nth-child(3)');
+        const divideRef = document.querySelector('.action button:nth-child(4)');
+        const resetRef = document.querySelector('.reset button');
+
+        let n1 = 0;
+        let n2 = 0;
+        let ans = 0;
+
+        function addListener(){
+
+            input1Ref.addEventListener('change' , (e) =>{
+                n1 = Number(e.target.value);
+            });
+            
+            input2Ref.addEventListener('change' , (e) =>{
+                n2 = Number(e.target.value);
+            }); 
+
+            addRef.addEventListener('click' , (e) => {
+                increment();
+            });
+
+            minusRef.addEventListener('click' , (e) => {
+                decrement();
+            });
+
+            multiplyRef.addEventListener('click' , (e) => {
+                multiply();
+            });
+
+            divideRef.addEventListener('click' , (e) => {
+                divide();
+            });
+
+            resetRef.addEventListener('click' , (e) => {
+                reset();
+            });  
+        }
+
+        function increment(){
+            ans = n1 + n2;
+            updateResult();
+        }
+
+        function decrement(){
+            ans = n1 - n2;
+            updateResult();
+        }
+
+        function multiply(){
+            ans = n1 * n2;
+            updateResult();
+        }
+
+        function divide(){
+            ans = n1 / n2;
+            updateResult();
+        }
+
+        function reset(){
+            ans = 0;
+            updateResult();
+        }
+
+        function updateResult(){
+            resultRef.innerText = ans;
+        }
+
+        addListener();
+
+        
+    </script>
+</body>
+</html>
